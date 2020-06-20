@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="text-center">
+      <h3>{{receta.id_receta}} {{receta.nombre}}</h3>  
+      <img [src]="receta.imagen" class="card-img-top">
+      <p>{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
+    </div>
+  </div>
+</div>

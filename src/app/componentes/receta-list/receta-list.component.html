@@ -10,8 +10,12 @@
                    <i class="far fa-trash-alt"></i> 
                 </button>
             </div>
+            <img [src]="receta.imagen" class="card-img-top size_imag">
             <div class="card-body">
-                <img [src]="receta.imagen" class="card-img-top size_imag">
+               
+                <button class="btn btn-success" [routerLink]="['/receta/ver', receta.id_receta]">
+                    Ver Receta
+                 </button>
             </div>
         </div>
     </div>    

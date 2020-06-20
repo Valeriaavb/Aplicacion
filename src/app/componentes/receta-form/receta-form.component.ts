@@ -1,9 +1,9 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Receta } from 'src/app/models/Receta';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {RecetaService} from '../../services/receta.service'
-
+import {Pasos} from '../../models/Pasos'
 
 @Component({
   selector: 'app-receta-form',
@@ -19,6 +19,14 @@ export class RecetaFormComponent implements OnInit {
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()
   };
+
+  pasos: Pasos = {
+    id_paso: 0,
+    descripcion: '',
+    id_receta:  0,
+    imagen: '',
+    numero_paso: 0
+  }
   
   edit: boolean =false;
 
@@ -32,7 +40,6 @@ export class RecetaFormComponent implements OnInit {
       .subscribe(
         res =>{
           this.receta=res;
-          console.log(this.receta.id_receta);
           this.edit =true;
         },
         err => console.error(err)

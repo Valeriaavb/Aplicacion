@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RecetaListComponent} from './componentes/receta-list/receta-list.component'
 import {RecetaFormComponent} from './componentes/receta-form/receta-form.component'
-
+import {RecetaComponent } from './componentes/receta/receta.component'
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'receta/editar/:id',
     component: RecetaFormComponent
+  },
+  {
+    path: 'receta/ver/:id',
+    component: RecetaComponent
   }
 ];
 
