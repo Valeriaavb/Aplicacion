@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +10,7 @@ import { RecetaFormComponent } from './componentes/receta-form/receta-form.compo
 import { RecetaListComponent } from './componentes/receta-list/receta-list.component';
 import { NavegacionComponent } from './componentes/navegacion/navegacion.component';
 
+import { RecetaService} from './services/receta.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +21,13 @@ import { NavegacionComponent } from './componentes/navegacion/navegacion.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    RecetaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

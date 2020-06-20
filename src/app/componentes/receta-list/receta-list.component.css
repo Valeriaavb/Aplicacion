@@ -1,0 +1,7 @@
+.size_card{
+    max-width: 300px;
+}
+.size_img{
+    width: 200px !important;
+    height: 200px !important;
+}
