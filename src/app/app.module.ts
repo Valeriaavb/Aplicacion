@@ -10,14 +10,16 @@ import { RecetaListComponent } from './componentes/receta-list/receta-list.compo
 import { NavegacionComponent } from './componentes/navegacion/navegacion.component';
 
 import { RecetaService} from './services/receta.service';
-import { RecetaComponent } from './componentes/receta/receta.component'
+import { RecetaComponent } from './componentes/receta/receta.component';
+import { IngredienteComponent } from './componentes/ingrediente/ingrediente.component'
 @NgModule({
   declarations: [
     AppComponent,
     RecetaFormComponent,
     RecetaListComponent,
     NavegacionComponent,
-    RecetaComponent
+    RecetaComponent,
+    IngredienteComponent
   ],
   imports: [
     BrowserModule,

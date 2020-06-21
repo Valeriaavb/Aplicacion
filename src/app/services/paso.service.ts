@@ -24,6 +24,10 @@ export class PasoService {
     return this.http.delete(`${this.API_URI}/pasos/${id}`);
   }
 
+  deletePasoReceta(id: string){
+    return this.http.delete(`${this.API_URI}/pasos/receta/${id}`);
+  }
+
   updatePaso(id:string|number, updatePaso: Pasos): Observable<Pasos>{
     return this.http.put(`${this.API_URI}/pasos/${id}`, updatePaso);
   }

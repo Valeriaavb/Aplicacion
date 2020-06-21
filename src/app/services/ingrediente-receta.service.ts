@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Receta} from '../models/Receta';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecetaService {
+export class IngredienteRecetaService {
+
   API_URI = 'http://localhost:3000/api';
   constructor(private http: HttpClient) {}
-
+/*
     getListaReceta(){
       return this.http.get(`${this.API_URI}/recetas`);
     }
@@ -21,14 +21,16 @@ export class RecetaService {
     saveReceta(receta: Receta){
       return this.http.post(`${this.API_URI}/recetas`, receta);
     }
-
-    deleteReceta(id: string){
-      return this.http.delete(`${this.API_URI}/recetas/${id}`);
-    }
-
-
-    updateReceta(id:string|number, updateReceta: Receta): Observable<Receta>{
+     updateReceta(id:string|number, updateReceta: Receta): Observable<Receta>{
       return this.http.put(`${this.API_URI}/recetas/${id}`, updateReceta);
     }
+   
+    */
+
+    deleteIngredienteReceta(id: string){
+      return this.http.delete(`${this.API_URI}/ingredienteReceta/${id}`);
+    }
+
+
    
 }

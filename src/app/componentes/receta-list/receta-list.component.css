@@ -1,5 +1,6 @@
 .size_card{
     max-width: 300px;
+    max-height: 300px;
 }
 .size_img{
     width: 200px !important;
