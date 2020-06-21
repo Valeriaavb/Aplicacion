@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Receta } from 'src/app/models/Receta';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Pasos} from '../../models/Pasos';
+import {PasoService} from '../../services/paso.service';
+import {RecetaService} from '../../services/receta.service';
 
-import {RecetaService} from '../../services/receta.service'
 @Component({
   selector: 'app-receta',
   templateUrl: './receta.component.html',
@@ -17,7 +19,10 @@ export class RecetaComponent implements OnInit {
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()
   };
-  constructor(private recetaService: RecetaService,private router: Router, private activedRoute: ActivatedRoute) { }
+
+  pasos: any = [];
+
+  constructor(private recetaService: RecetaService,private pasoService: PasoService,private router: Router, private activedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;
@@ -31,7 +36,16 @@ export class RecetaComponent implements OnInit {
         },
         err => console.error(err)
       );
+
+      this.pasoService.getListaPasos(params.id)
+      .subscribe(
+        res =>{
+          this.pasos=res;
+        },
+        err => console.error(err)
+      );
     }
+    
   }
 
 }

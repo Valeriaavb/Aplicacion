@@ -5,5 +5,9 @@
       <img [src]="receta.imagen" class="card-img-top">
       <p>{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
     </div>
+    <div *ngFor="let paso of pasos">
+      {{paso.numero_paso}}.{{paso.descripcion}}
+      <img [src]="paso.imagen" class="card-img-top size_image">
+    </div>
   </div>
 </div>

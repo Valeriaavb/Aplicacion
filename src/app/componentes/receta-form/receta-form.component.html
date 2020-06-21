@@ -9,6 +9,9 @@
           <div class="form-group">
             <input type="url" name="imagen" [(ngModel)]="receta.imagen" placeholder="URL de la Imagen" class="form-control" >
           </div>
+          <div class="form-group">
+            <textarea  name="description" [(ngModel)]="paso.descripcion" placeholder="Pasos de la receta" rows="2" class="form-control" ></textarea>
+          </div>
           <button class = "btn btn-success btn-block" (click)="!edit ? guardarReceta() : editarReceta()  ">
             Guardar 
           </button>
@@ -22,6 +25,10 @@
       <h3>{{receta.id_receta}} {{receta.nombre}}</h3>  
       <img [src]="receta.imagen" class="card-img-top">
       <p>{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
+      <div *ngFor="let paso of pasos">
+        {{paso.numero_paso}}.{{paso.descripcion}}
+        <img [src]="paso.imagen" class="card-img-top">
+      </div>
     </div>
   </div>
 </div>
