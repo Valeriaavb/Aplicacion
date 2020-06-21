@@ -18,7 +18,7 @@ export class RecetaService {
       return this.http.get(`${this.API_URI}/recetas/${id}`);
     }
 
-    saveReceta(receta: Receta){
+    saveReceta(receta: Receta): Observable<any>{
       return this.http.post(`${this.API_URI}/recetas`, receta);
     }
 

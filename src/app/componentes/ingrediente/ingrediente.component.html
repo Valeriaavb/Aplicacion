@@ -1,3 +1,25 @@
-<p>
-  ingrediente works!
-</p>
+<div class="row">
+  <div class="row-md-4 size_card" *ngFor="let ingrediente of ingredientes; let i=index">
+      <div class="card text-center">
+          <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <input [disabled]="ingrediente.editar"  type="url" name="nombre" [(ngModel)]="ingrediente.nombre" placeholder="Nombre ingrediente" class="form-control" >
+          </div>
+         <div class="card-body">
+  
+            <button *ngIf="ingrediente.editar" class="btn btn-warning"  (click)="editarIngrediente(i)" >
+                <i class="fas fa-pencil-alt"></i>
+             </button>
+             <button *ngIf="!ingrediente.editar" class="btn btn-success"  (click)="guardarIngrediente(i)" >
+                <i class="fas fa-save"></i>
+             </button>
+            <button class="btn btn-danger" (click)="borrarIngrediente(ingrediente.id_ingrediente)">
+               <i class="far fa-trash-alt"></i> 
+            </button>
+          </div> 
+      </div>
+  </div> 
+</div>
+
+<button class="btn btn-success"  (click)="agregarIngrediente()">
+    <i class="far fa-trash-alt">Agregar nuevo Ingrediente</i> 
+ </button>

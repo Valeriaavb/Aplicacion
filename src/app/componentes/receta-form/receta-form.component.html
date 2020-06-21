@@ -4,27 +4,76 @@
       <div class="card-body">
         <form>
           <div class="form-group">
+            <h4>Nombre de la Receta:</h4>
             <input type="text" name="nombre" [(ngModel)]="receta.nombre" placeholder="Nombre de la receta" class="form-control" autofocus>
           </div>
           <div class="form-group">
+            <strong>Imagen de la receta</strong>
             <input type="url" name="imagen" [(ngModel)]="receta.imagen" placeholder="URL de la Imagen" class="form-control" >
           </div>
-          <div class="form-group">
-            <textarea  name="description" [(ngModel)]="paso.descripcion" placeholder="Pasos de la receta" rows="2" class="form-control" ></textarea>
-          </div>
-          <button class = "btn btn-success btn-block" (click)="!edit ? guardarReceta() : editarReceta()  ">
-            Guardar 
-          </button>
-        </form>
+
+         
+         </form>
+
+         <h5>Ingredientes que posee:</h5>
+      <div  *ngFor="let ingre of ingredientes; let i=index">     
+        <div *ngIf="!ingre.nuevo">
+        <input name="nombre" [(ngModel)]="ingre.nombre" placeholder="Ingrediente"  class="form-control" disabled>
+      </div>
+         <br>
+         <div *ngIf="ingre.nuevo" >
+          <select  class="custom-select inputs" [(ngModel)]="ingredientes[i].id_ingrediente">
+           <option value="">Escoge ingredientes</option>
+           <option *ngFor="let ing of ingrediente" [ngValue]="ing.id_ingrediente" >{{ing.nombre}}</option>
+           </select> 
+         </div>
+ 
+         <input  name="cantidad" [(ngModel)]="ingre.cantidad" placeholder="Cantidad" class="form-control inputs" >
+         <p></p>
+         <button class="far fa-trash-alt btn btn-danger" (click)="borrarIngrediente(ingre)"></button>
+         
+       </div>
+       <br>
+
+
+
+       <button class = "fas fa-plus-circle btn btn-success" (click)="agregarNuevosIngredientes()">Agregar Ingrediente</button>
+      <p></p>
+       <h5>Pasos de la receta:</h5>
+
+        <div  *ngFor="let paso of pasos">
+          <textarea  name="description" [(ngModel)]="paso.descripcion" placeholder="Pasos de la receta"  class="form-control" ></textarea>
+           <br>
+           <input type="url" name="imagen" [(ngModel)]="paso.imagen" placeholder="URL de la Imagen" class="form-control" >
+           <br>
+           <button class="far fa-trash-alt btn btn-danger" (click)="borrarPaso(paso)"></button>
+           <p></p>
+         </div>
+         <br>
+         <button class = "fas fa-plus-circle btn btn-success" (click)="agregarNuevosPasos()">Agregar paso</button>
+          <p></p>
+         <button class = "btn btn-success btn-block" (click)="!edit ? guardarReceta() : editarReceta()  ">
+          Guardar Receta
+        </button>
+  
       </div>
     </div>
   </div>
   
+
+
+
   <div class="col-md-4">
     <div class="card card-body text-center">
       <h3>{{receta.id_receta}} {{receta.nombre}}</h3>  
       <img [src]="receta.imagen" class="card-img-top">
       <p>{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
+      <h5>Ingredientes:</h5>
+      <div *ngFor="let ingrediente of ingredientes">
+       {{ingrediente.cantidad}} de {{ingrediente.nombre}}
+      </div>
+      <p></p>
+      <h5>Pasos:</h5>
       <div *ngFor="let paso of pasos">
         {{paso.numero_paso}}.{{paso.descripcion}}
         <img [src]="paso.imagen" class="card-img-top">

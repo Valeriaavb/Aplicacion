@@ -11,8 +11,8 @@ export class PasoService {
   API_URI = 'http://localhost:3000/api';
   constructor(private http: HttpClient) {}
   
-  getListaPasos(id: string) {
-    return this.http.get(`${this.API_URI}/pasos/${id}`,);
+  getListaPasos(id: string): Observable<Pasos[]> {
+    return this.http.get<Pasos[]>(`${this.API_URI}/pasos/${id}`,);
   }
 
 
@@ -24,7 +24,7 @@ export class PasoService {
     return this.http.delete(`${this.API_URI}/pasos/${id}`);
   }
 
-  deletePasoReceta(id: string){
+  deletePasoReceta(id: string|number){
     return this.http.delete(`${this.API_URI}/pasos/receta/${id}`);
   }
 

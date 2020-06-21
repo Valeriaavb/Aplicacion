@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Receta } from 'src/app/models/Receta';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Pasos} from '../../models/Pasos';
 import {PasoService} from '../../services/paso.service';
 import {RecetaService} from '../../services/receta.service';
+import {IngredienteRecetaService} from '../../services/ingrediente-receta.service';
 
 @Component({
   selector: 'app-receta',
@@ -21,8 +21,8 @@ export class RecetaComponent implements OnInit {
   };
 
   pasos: any = [];
-
-  constructor(private recetaService: RecetaService,private pasoService: PasoService,private router: Router, private activedRoute: ActivatedRoute) { }
+  ingredientes: any = [];
+  constructor(private recetaService: RecetaService,private pasoService: PasoService,private ingredienteRecetaService: IngredienteRecetaService,private router: Router, private activedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;
@@ -41,6 +41,13 @@ export class RecetaComponent implements OnInit {
       .subscribe(
         res =>{
           this.pasos=res;
+        },
+        err => console.error(err)
+      );
+      this.ingredienteRecetaService.getListaIngRec(params.id)
+      .subscribe(
+        res =>{
+          this.ingredientes=res;
         },
         err => console.error(err)
       );
