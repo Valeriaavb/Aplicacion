@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Receta } from 'src/app/models/Receta';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, FormArray, AbstractControl} from '@angular/forms';
+
 import {RecetaService} from '../../services/receta.service';
 import {Pasos} from '../../models/Pasos';
 import {PasoService} from '../../services/paso.service';
@@ -21,24 +21,19 @@ export class RecetaFormComponent implements OnInit {
     fecha_modificacion: new Date()
   };
 
- /* paso: Pasos = {
+  paso: Pasos = {
     id_paso:0,
     id_receta: 0,
     descripcion: '',
     imagen: '',
     numero_paso: 0
-  };*/
+  };
 
-  paso: FormGroup;
   pasos: any = [];
   
   edit: boolean =false;
 
-  constructor(private recetaService: RecetaService,private pasoService: PasoService, private router: Router, private activedRoute: ActivatedRoute) {
- //   this.paso = this.fb.group({
-   //   descripcion: this.fb.array([this.fb.control(null)]),
-  //});
-   }
+  constructor(private recetaService: RecetaService,private pasoService: PasoService, private router: Router, private activedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     const params = this.activedRoute.snapshot.params;
@@ -56,19 +51,11 @@ export class RecetaFormComponent implements OnInit {
       this.pasoService.getListaPasos(params.id)
       .subscribe(
         res =>{
-          debugger;
-         // this.pasos=res;
-      /*   this.paso = this.fb.group({
-          descripcion: this.fb.array([this.fb.control(null)]),
-        });
-          res.forEach(element => {
-          (this.paso.get('descripcion') as FormArray).push(this.fb.control(element));
-          });*/
+          this.pasos=res;
           this.edit =true;
         },
         err => console.error(err)
       );
-    
     }
   }
 
