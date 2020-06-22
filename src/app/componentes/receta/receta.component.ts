@@ -16,9 +16,8 @@ export class RecetaComponent implements OnInit {
     id_receta: 0,
     nombre: '',
     imagen: '',
-    fecha_creacion: new Date(),
-    fecha_modificacion: new Date()
-  };
+    fecha_creacion: new Date()
+   };
 
   pasos: any = [];
   ingredientes: any = [];
@@ -32,7 +31,6 @@ export class RecetaComponent implements OnInit {
       .subscribe(
         res =>{
           this.receta=res;
-          console.log(this.receta.id_receta);
         },
         err => console.error(err)
       );

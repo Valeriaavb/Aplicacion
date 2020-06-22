@@ -21,8 +21,7 @@ export class RecetaFormComponent implements OnInit {
     nombre: '',
     imagen: '',
     descripcion: '',
-    fecha_creacion: new Date(),
-    fecha_modificacion: new Date()
+    fecha_creacion: new Date()
   };
 
   ingrediente: Ingrediente[] = [];
@@ -94,18 +93,15 @@ export class RecetaFormComponent implements OnInit {
       this.pasos[i].numero_paso= i+1;
       this.pasos[i].id_receta = this.receta.id_receta;     
     }
-    console.log(this.pasos);
   
   }
 
   guardarReceta(){
     delete this.receta.id_receta;
     delete this.receta.fecha_creacion;
-    delete this.receta.fecha_modificacion;
     this.recetaService.saveReceta(this.receta)
       .subscribe(
         res =>{
-          console.log(res.insertId);
           for (let i = 0; i < this.pasos.length; i++) {
             this.pasos[i].id_receta = res.insertId;   
             this.pasoService.savePaso(this.pasos[i]).subscribe(
@@ -150,11 +146,9 @@ export class RecetaFormComponent implements OnInit {
         
     this.pasoService.deletePasoReceta(this.pasos[0].id_receta).subscribe(
       res=>{
-        console.log('borre todo');
         this.pasos.forEach((paso)=>{
           this.pasoService.savePaso(paso).subscribe(
             res=>{
-              console.log('Inserto nuevos pasos');
             },
             err => console.error(err)
           );
@@ -170,7 +164,6 @@ export class RecetaFormComponent implements OnInit {
             delete ingredien.id;
             this.ingredienteRecetaService.saveIngRec(ingredien).subscribe(
               res=>{
-                console.log('Inserto nuevo ingRec');
               },
               err => console.error(err)
             );
