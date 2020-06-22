@@ -6,5 +6,6 @@ export interface Receta{
     fecha_creacion?:  Date;
     fecha_modificacion?: Date;
     imagen?: string;
+    descripcion?: string;
 
 }

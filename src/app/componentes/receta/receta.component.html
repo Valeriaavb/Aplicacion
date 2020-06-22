@@ -1,9 +1,10 @@
 <div class="row">
-  <div class="col-md-4">
-    <div class="text-center">
-      <h2>{{receta.id_receta}} {{receta.nombre}}</h2>  
+  <div class="col-md-6 offset-md-3">
+    <div>
+      <h2> {{receta.nombre}}</h2>  
       <img [src]="receta.imagen" class="card-img-top">
-      <p>{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
+      <p  class="text-center">{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
+      <p>{{receta.descripcion}}</p>
     </div>
     <h5>Ingredientes:</h5>
     <div *ngFor="let ingrediente of ingredientes">
@@ -11,8 +12,8 @@
     </div>
     <h5>Pasos a seguir:</h5>
     <div *ngFor="let paso of pasos">
-      {{paso.numero_paso}}.{{paso.descripcion}}
-      <img [src]="paso.imagen" class="card-img-top size_image">
+      <p>{{paso.numero_paso}}.{{paso.descripcion}}
+      <img [src]="paso.imagen" class="card-img-top size_image"></p>
     </div>
   </div>
 </div>

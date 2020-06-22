@@ -22,12 +22,12 @@ export class IngredienteComponent implements OnInit {
   getIngredientes(){
     this.ingredienteService.getListaIngrediente().subscribe(
       res => {
-        console.log(res);
+        
         this.ingredientes = res;
         this.ingredientes.forEach(element => {
           element.editar = true;
         });
-        debugger;
+        
       },
       err => console.error(err)
     );
@@ -44,16 +44,16 @@ export class IngredienteComponent implements OnInit {
   borrarIngrediente(id: string){
     this.ingredienteRecetaService.deleteIngredienteRec(id).subscribe(
       res =>{
-        console.log(res);
+        
         this.ingredienteService.deleteIngrediente(id).subscribe(
           res =>{
-            console.log(res);
+            
             this.getIngredientes();
           },
-          err => console.log(err)
+          err => console.error(err)
         );
       },
-      err => console.log(err)
+      err => console.error(err)
     );
   }
 
@@ -67,16 +67,16 @@ export class IngredienteComponent implements OnInit {
       delete this.ingredientes[i].nuevo;
       this.ingredienteService.saveIngrediente(this.ingredientes[i]).subscribe(
         res =>{
-          console.log(res);
+          
         },
-        err => console.log(err)
+        err => console.error(err)
       );
     }else{
     this.ingredienteService.updateIngrediente(this.ingredientes[i].id_ingrediente, this.ingredientes[i]).subscribe(
       res =>{
-        console.log(res);
+        
       },
-      err => console.log(err)
+      err => console.error(err)
     ); 
     }
     this.ingredientes[i].editar = true;

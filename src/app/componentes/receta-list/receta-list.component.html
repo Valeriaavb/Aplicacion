@@ -1,22 +1,32 @@
 <div class="row">
-    <div class="row-md-4 size_card" *ngFor="let receta of recetas" >
-        <div class="card text-center">
-            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                {{receta.nombre}}
-                <button class="btn btn-warning" [routerLink]="['/receta/editar', receta.id_receta]" >
-                    <i class="fas fa-pencil-alt"></i>
-                 </button>
-                <button class="btn btn-danger" (click)="borrarReceta(receta.id_receta)">
-                   <i class="far fa-trash-alt"></i> 
-                </button>
-            </div>
-            <img [src]="receta.imagen" class="card-img-top size_imag">
-            <div class="card-body">
-               
-                <button class="btn btn-success" [routerLink]="['/receta/ver', receta.id_receta]">
-                    Ver Receta
-                 </button>
+    <ng-container *ngFor="let receta of recetas">
+        <div class="row-md-4 ">
+            <div class="card text-center ">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center"
+                style="width: 350px;">
+                    <div class="col-sm-6">
+                        {{receta.nombre}}
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-warning " [routerLink]="['/receta/editar', receta.id_receta]">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-danger" (click)="borrarReceta(receta.id_receta)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <img [src]="receta.imagen" class="card-img-top" style="width: 350px; height: 200px;">
+                <div class="card-body" style="width: 350px;">
+                   
+                    <button class="btn btn-success" [routerLink]="['/receta/ver', receta.id_receta]">
+                        Ver Receta
+                    </button>
+                </div>
             </div>
         </div>
-    </div>    
+        <div class="clearfix" *ngIf="i % 3 == 0 && i != 0"></div>
+
+    </ng-container>
 </div>

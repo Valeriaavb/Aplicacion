@@ -30,22 +30,22 @@ export class RecetaListComponent implements OnInit {
   borrarReceta(id: string){
     this.pasosService.deletePasoReceta(id).subscribe(
       res =>{
-        console.log(res);
+        
         this.ingredienteRecetaService.deleteIngredienteReceta(id).subscribe(
           res =>{
-            console.log(res);
+            
             this.recetaService.deleteReceta(id).subscribe(
               res =>{
-                console.log(res);
+                
                 this.getRecetas();
               },
-              err => console.log(err)
+              err => console.error(err)
             );
           },
-          err => console.log(err)
+          err => console.error(err)
         );
       },
-      err => console.log(err)
+      err => console.error(err)
     );
 
   

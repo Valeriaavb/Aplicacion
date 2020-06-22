@@ -20,6 +20,7 @@ export class RecetaFormComponent implements OnInit {
     id_receta: 0,
     nombre: '',
     imagen: '',
+    descripcion: '',
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()
   };
@@ -63,7 +64,7 @@ export class RecetaFormComponent implements OnInit {
 
       this.ingredienteService.getListaIngrediente().subscribe(
         (res) => {
-          debugger;
+          
           this.ingrediente=res;
           this.edit = true;
         },
@@ -72,7 +73,7 @@ export class RecetaFormComponent implements OnInit {
     }else{
       this.ingredienteService.getListaIngrediente().subscribe(
         (res) => {
-          debugger;
+          
           this.ingrediente=res;
         },
         (err) => console.error(err)
@@ -109,20 +110,20 @@ export class RecetaFormComponent implements OnInit {
             this.pasos[i].id_receta = res.insertId;   
             this.pasoService.savePaso(this.pasos[i]).subscribe(
               res=>{
-                console.log(res);
+                
               },
               err => console.error(err)
             );  
           }
             for (let j = 0; j < this.ingredientes.length; j++) {
-              debugger;
+              
               this.ingredientes[j].id_receta = res.insertId; 
               delete this.ingredientes[j].nombre;
               delete this.ingredientes[j].nuevo;
               delete this.ingredientes[j].id;
               this.ingredienteRecetaService.saveIngRec(this.ingredientes[j]).subscribe(
                 res=>{
-                  console.log(res);
+                  
                 },
                 err => console.error(err)
               );  
@@ -137,7 +138,7 @@ export class RecetaFormComponent implements OnInit {
     delete this.receta.fecha_creacion;
     this.pasos;
     this.receta;
-    debugger;
+    
     //this.receta.fecha_modificacion= new Date();
     this.recetaService.updateReceta(this.receta.id_receta,this.receta)
       .subscribe(
@@ -175,7 +176,7 @@ export class RecetaFormComponent implements OnInit {
             );
           })
         },
-        err=> console.log(err)
+        err=> console.error(err)
       );
   }
 
@@ -185,13 +186,13 @@ export class RecetaFormComponent implements OnInit {
     for (let i = 0; i < this.pasos.length; i++) {
       this.pasos[i].numero_paso= i+1;   
     }
-    debugger;
+    
   }
 
   borrarIngrediente(element){
     var i = this.ingredientes.indexOf( element );
     this.ingredientes.splice( i, 1 );
-    debugger;
+    
   }
 
   agregarNuevosIngredientes(){
@@ -203,6 +204,6 @@ export class RecetaFormComponent implements OnInit {
       nuevo:true
     };
     this.ingredientes.push(ingrediente);
-    debugger;
+    
   }
 }

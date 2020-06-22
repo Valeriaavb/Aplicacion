@@ -1,11 +1,15 @@
 <div class="row">
-  <div class="col-md-4 offset-md-2">
+  <div class="col-md-6 offset-md-1">
     <div class="card">
       <div class="card-body">
         <form>
           <div class="form-group">
             <h4>Nombre de la Receta:</h4>
             <input type="text" name="nombre" [(ngModel)]="receta.nombre" placeholder="Nombre de la receta" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <strong>Descripción de la Receta:</strong>
+            <textarea type="text" name="descripcion" [(ngModel)]="receta.descripcion" placeholder="Descripcion de la receta" class="form-control" autofocus></textarea>
           </div>
           <div class="form-group">
             <strong>Imagen de la receta</strong>
@@ -16,23 +20,34 @@
          </form>
 
          <h5>Ingredientes que posee:</h5>
-      <div  *ngFor="let ingre of ingredientes; let i=index">     
-        <div *ngIf="!ingre.nuevo">
-        <input name="nombre" [(ngModel)]="ingre.nombre" placeholder="Ingrediente"  class="form-control" disabled>
+      <div class="form-inline">
+        <div class="col-sm-4">
+          <label>Cantidad</label>
+        </div>
+        <div class="col-sm-6">
+          <label>Ingrediente</label>
+        </div>
       </div>
-         <br>
+      <div  *ngFor="let ingre of ingredientes; let i=index" class="form-inline">    
+        <div class="col-sm-4">
+        <input name="cantidad" [(ngModel)]="ingre.cantidad" placeholder="Cantidad" class="form-control inputs" style="width: inherit; height: 2.5em;">
+      </div>
+      <div class="col-sm-6">
+        <div *ngIf="!ingre.nuevo">
+        <input name="nombre" [(ngModel)]="ingre.nombre" placeholder="Ingrediente"  class="form-control" style="width: inherit; height: 2.5em;" disabled>
+      </div>
          <div *ngIf="ingre.nuevo" >
-          <select  class="custom-select inputs" [(ngModel)]="ingredientes[i].id_ingrediente">
+          <select  class="custom-select inputs" [(ngModel)]="ingredientes[i].id_ingrediente" style="width: inherit; height: 2.5em; padding: 0px 0px 0px 24px">
            <option value="">Escoge ingredientes</option>
            <option *ngFor="let ing of ingrediente" [ngValue]="ing.id_ingrediente" >{{ing.nombre}}</option>
            </select> 
          </div>
- 
-         <input  name="cantidad" [(ngModel)]="ingre.cantidad" placeholder="Cantidad" class="form-control inputs" >
-         <p></p>
+        </div>
          <button class="far fa-trash-alt btn btn-danger" (click)="borrarIngrediente(ingre)"></button>
          
-       </div>
+        <br>
+        <br>
+        </div>
        <br>
 
 
@@ -68,6 +83,7 @@
       <h3>{{receta.id_receta}} {{receta.nombre}}</h3>  
       <img [src]="receta.imagen" class="card-img-top">
       <p>{{receta.fecha_creacion | date: 'dd-MM-yyyy'}}</p>
+      <p>{{receta.descripcion}}</p>
       <h5>Ingredientes:</h5>
       <div *ngFor="let ingrediente of ingredientes">
        {{ingrediente.cantidad}} de {{ingrediente.nombre}}
@@ -81,3 +97,4 @@
     </div>
   </div>
 </div>
+
